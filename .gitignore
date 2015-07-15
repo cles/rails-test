@@ -11,3 +11,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# rails
+config/database.yml
+config/secrets.yml
+bin
+.ruby-version
