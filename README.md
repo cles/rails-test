@@ -1,6 +1,6 @@
-== README
+## README
 
-=== deploy
+### deploy
 
 deploy via capistrano-chef, requires a chef-zero server active and loaded with
 rails-test data:
