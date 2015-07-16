@@ -1,28 +1,28 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== deploy
 
-Things you may want to cover:
+deploy via capistrano-chef, requires a chef-zero server active and loaded with
+rails-test data:
 
-* Ruby version
+```
+cd <rails-test-chef folder>
+chef-zero -d
+knife upload .
+```
 
-* System dependencies
+The data server IP addresses will be loaded from a chef search on
+'roles:rails_app'
 
-* Configuration
+sample .chef/knife.rb:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+```
+log_level :info
+current_dir = File.dirname(__FILE__)
+root_dir = File.expand_path(File.join(current_dir, '..'))
+chef_server_url "http://localhost:8889" # use info loaded on chef-zero
+node_name 'node'
+# dummy key, any will do, chef-zero will not check it but it must exist
+# and be correctly formatted
+client_key '/home/oriol/.ssh/oriolfa-key-pair-euwest1.pem'
+```
